@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* { /* whole side setup */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #212226;
+    /* #212226 */
+}
+
+li, a { /* Font */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: #edf0f1;
+    text-decoration: none;
+    letter-spacing: 3px;
+}
+
+header { /* nav placement */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+/* under line */
+hr {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 33%;
+    height: 2px;
+    background-color: #cf7500;
+    border-color: #212226;
+}
+
+.nav_links {
+    list-style: none;
+}
+
+
+/* Animations for nav */
+.nav_links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+/* .nav_links {
+    letter-spacing: 3px;
+    font-weight: bold;
+} */
+
+.nav_links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover { 
+    color: #cf7500;
+}
+
+/* ALL THE DATA CELLS */
+main {
+    margin-top: 2%;
+    text-align: center;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 5px 5px;
+    margin: auto;
+}
+.grid-item {
+    width: 80%;
+    height: 100%;
+    border: 1px solid;
+    margin: auto;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #edf0f1;
+    text-decoration: none;
+    text-align: left;
+    text-indent: 2%;
+}
+
+
