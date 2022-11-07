@@ -1,27 +1,40 @@
-<body>
-    <header>
-        <!-- <img class="logo" src="images/logo.svg" alt="logo"> -->
-        <nav>
-            <ul class="nav_links">
-                <li><a href="#">Live Data</a></li>
-                <li><a href="#">Graph's</a></li>
-                <li><a href="#">Settings</a></li>
-            </ul>
-        </nav>
-    </header>
+<nb-layout>
 
-    <!-- The orange line add for style -->
-    <hr> 
+  <nb-layout-header fixed>
+  <!-- Insert header here -->
+            <!-- <img class="logo" src="images/logo.svg" alt="logo"> -->
+            <nav>
+                <ul class="nav_links">
+                    <li><a href="#">Live Data</a></li>
+                    <li><a href="#">Graph's</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+        
+  </nb-layout-header>
+
+  <nb-layout-column>
+    <body>
+        <!-- The orange line add for style -->
+        <hr> 
+        
+        <main id="dataContainer">
+            <!-- this will disply a symbol to indikate if the temp is rising or falling -->
+            <div class="grid-container">
+                <div class="grid-item">Battery Temp</div>
+                <div class="grid-item">Speed</div>
+                <div class="grid-item">Test</div>
+              </div>
+        </main>
     
-    <main id="dataContainer">
-        <!-- this will disply a symbol to indikate if the temp is rising or falling -->
-        <div class="grid-container">
-            <div class="grid-item">Battery Temp</div>
-            <div class="grid-item">Speed</div>
-            <div class="grid-item">Test</div>
-          </div>
-    </main>
+    </body>
+    
+    <router-outlet></router-outlet>
+    
+  </nb-layout-column>
 
-</body>
+  <nb-layout-footer fixed>
+  <!-- Insert footer here -->
+  </nb-layout-footer>
 
-<router-outlet></router-outlet>
+</nb-layout>
