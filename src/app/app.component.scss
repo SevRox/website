@@ -65,31 +65,20 @@ hr {
     }
 }
 
-/* ALL THE DATA CELLS */
-main {
-    margin-top: 2%;
-    text-align: center;
+// data card 
+
+.raw_data_list span{
+    align-items: center;
+    margin: 0% auto 0% auto;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 5px 5px;
+.png-icon{
+    width: 24px;
+    height: 24px;
     margin: auto;
+    padding: 0;
+    display: inline-block;
+    background-repeat: no-repeat no-repeat;
+    pointer-events: none;
+    filter: invert(100%);
 }
-
-.grid-item {
-    width: 80%;
-    height: 100%;
-    border: 1px solid;
-    margin: auto;
-
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    font-size: 14px;
-    color: #edf0f1;
-    text-decoration: none;
-    text-align: left;
-    text-indent: 2%;
-}
-
