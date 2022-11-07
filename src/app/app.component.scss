@@ -1,27 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
-* { /* whole side setup */
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    background-color: #212226;
-    /* #212226 */
+
+header {
+    /* nav placement */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1% 0% 0% 0%;
 }
 
-li, a { /* Font */
+li,
+a {
+    /* Font */
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     font-size: 18px;
     color: #edf0f1;
     text-decoration: none;
     letter-spacing: 3px;
+    @media screen and (max-width: 540px) {
+        font-size: 16px;
+    }
 }
 
-header { /* nav placement */
-    display: flex;
-    justify-content: center;
+.nav_links {
+    list-style: none;
+}
+
+/* Animations for nav */
+.nav_links li {
+    display: inline-block;
     align-items: center;
-    padding: 30px 10%;
+    align-self: center;
+    padding: 14px;
+    @media screen and (max-width: 540px) {
+        padding: 8px;
+    }
+}
+
+.nav_links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+    color: #cf7500;
 }
 
 /* under line */
@@ -31,33 +53,13 @@ hr {
     margin-left: auto;
     margin-right: auto;
     width: 33%;
-    height: 2px;
+    height: 1px;
     background-color: #cf7500;
-    border-color: #212226;
-}
+    border-color: #cf7500;
 
-.nav_links {
-    list-style: none;
-}
-
-
-/* Animations for nav */
-.nav_links li {
-    display: inline-block;
-    padding: 0px 20px;
-}
-
-/* .nav_links {
-    letter-spacing: 3px;
-    font-weight: bold;
-} */
-
-.nav_links li a {
-    transition: all 0.3s ease 0s;
-}
-
-.nav_links li a:hover { 
-    color: #cf7500;
+    @media screen and (max-width: 540px) {
+        width: 80%;
+    }
 }
 
 /* ALL THE DATA CELLS */
@@ -65,12 +67,14 @@ main {
     margin-top: 2%;
     text-align: center;
 }
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 5px 5px;
     margin: auto;
 }
+
 .grid-item {
     width: 80%;
     height: 100%;
@@ -85,5 +89,4 @@ main {
     text-align: left;
     text-indent: 2%;
 }
-
 
