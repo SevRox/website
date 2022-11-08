@@ -16,9 +16,12 @@ hr {
 
 // data card 
 
-.raw_data_list span {
-    align-items: center;
-    margin: 0% auto 0% auto;
+.raw_data_lst_left {
+    margin: 0% auto 0% 0%;
+}
+
+.raw_data_lst_right {
+    margin: 0% 0% 0% auto;
 }
 
 .png-icon {

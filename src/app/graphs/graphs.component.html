@@ -5,8 +5,8 @@
     <nb-card-body>
         <nb-list>
             <nb-list-item *ngFor="let timestamp of mock_list">
-                <span class="recorded_data_list_span">{{timestamp.day.getDay()}}.{{timestamp.day.getMonth()}}.{{timestamp.day.getFullYear()}}, {{timestamp.day.toLocaleTimeString()}}</span>
-                <span class="recorded_data_list_span">{{timestamp.duration}} min</span>
+                <span class="recorded_data_list_span_left">{{timestamp.day.getDay()}}.{{timestamp.day.getMonth()}}.{{timestamp.day.getFullYear()}}, {{timestamp.day.toLocaleTimeString()}}</span>
+                <span class="recorded_data_list_span_right">{{timestamp.duration}} min</span>
                 <nb-checkbox [(ngModel)]="timestamp.checkBoxState"></nb-checkbox>
             </nb-list-item>
         </nb-list>

@@ -6,91 +6,91 @@
         <nb-card class="data_card">
             <nb-card-header>Ebike live data, raw</nb-card-header>
             <nb-card-body>
-                <nb-list class="raw_data_list">
+                <nb-list>
                     <nb-list-item>
-                        <span>
+                        <span class="raw_data_lst_left">
                             <span class="material-icons">battery_full</span>
                             <span> Temperature, &#8451;</span>
                         </span>
-                        <span>{{liveData.battery_temp}}</span>
+                        <span class="raw_data_lst_right">{{liveData.battery_temp}}</span>
                     </nb-list-item>
                     <nb-list-item>
-                        <span>
+                        <span class="raw_data_lst_left">
                             <img class="png-icon" src="../assets/transistor.png">
                             <span> Temperature, &#8451;</span>
                         </span>
-                        <span>{{liveData.mosfet_temp}}</span>
+                        <span class="raw_data_lst_right">{{liveData.mosfet_temp}}</span>
                     </nb-list-item>
                     <nb-list-item>
-                        <span>
+                        <span class="raw_data_lst_left">
                             <img class="png-icon" src="../assets/engine.png">
                             <span> Temperature, &#8451;</span>
                         </span>
-                        <span>{{liveData.motor_temp}}</span>
+                        <span class="raw_data_lst_right">{{liveData.motor_temp}}</span>
                     </nb-list-item>
                     <nb-list-item>
-                        <span>
+                        <span class="raw_data_lst_left">
                             <span class="material-icons">battery_full</span>
                             <span> Voltage, V</span>
                         </span>
-                        <span>{{liveData.battery_voltage}}</span>
+                        <span class="raw_data_lst_right">{{liveData.battery_voltage}}</span>
                     </nb-list-item>
                     <nb-list-item>
-                        <span>
+                        <span class="raw_data_lst_left">
                             <span class="material-icons">battery_full</span>
                             <span> Current, A</span>
                         </span>
-                        <span>{{liveData.battery_current}}</span>
+                        <span class="raw_data_lst_right">{{liveData.battery_current}}</span>
                     </nb-list-item>
                     <nb-list-item>
-                        <span>
+                        <span class="raw_data_lst_left">
                             <img class="png-icon" src="../assets/engine.png">
                             <span> Current, A</span>
                         </span>
-                        <span>{{liveData.motor_current}}</span>
+                        <span class="raw_data_lst_right">{{liveData.motor_current}}</span>
                     </nb-list-item>
                     <nb-list-item>
-                        <span>
+                        <span class="raw_data_lst_left">
                             <span class="material-icons">swipe_vertical</span>
                             <span> Throttle, %</span>
                         </span>
-                        <span>{{liveData.throttle_val}}</span>
+                        <span class="raw_data_lst_right">{{liveData.throttle_val}}</span>
                     </nb-list-item>
                     <nb-list-item>
-                        <span>
+                        <span class="raw_data_lst_left">
                             <!-- TODO -->
                             <span class="material-icons">speed</span>
                             <span> Speed, km/h</span>
                         </span>
-                        <span>{{liveData.rmp}}</span>
+                        <span class="raw_data_lst_right">{{liveData.rmp}}</span>
                     </nb-list-item>
                     <nb-list-item>
-                        <span>
+                        <span class="raw_data_lst_left">
                             <span class="material-icons">speed</span>
                             <span> RMP</span>
                         </span>
-                        <span>{{liveData.rmp}}</span>
+                        <span class="raw_data_lst_right">{{liveData.rmp}}</span>
                     </nb-list-item>
                     <nb-list-item>
-                        <span>
+                        <span class="raw_data_lst_left">
                             <span class="material-icons">battery_alert</span>
                             <span> Used, WH</span>
                         </span>
-                        <span>{{liveData.watt_hours_used}}</span>
+                        <span class="raw_data_lst_right">{{liveData.watt_hours_used}}</span>
                     </nb-list-item>
                     <nb-list-item>
-                        <span>
+                        <span class="raw_data_lst_left">
                             <span class="material-icons">battery_alert</span>
                             <span> Used, AH</span>
                         </span>
-                        <span>{{liveData.amp_hours_used}}</span>
+                        <span class="raw_data_lst_right">{{liveData.amp_hours_used}}</span>
                     </nb-list-item>
                     <nb-list-item>
-                        <span>
+                        <span class="raw_data_lst_left">
                             <span class="material-icons">error</span>
                             <span> Error Code</span>
                         </span>
-                        <span>{{liveData.error_code}}</span>
+                        <span class="raw_data_lst_right">{{liveData.error_code}}</span>
                     </nb-list-item>
                 </nb-list>
             </nb-card-body>
