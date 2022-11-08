@@ -4,11 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbCheckboxModule, NbToastrModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LiveDataComponent } from './live-data/live-data.component';
 import { SettingsComponent } from './settings/settings.component';
 import { GraphsComponent } from './graphs/graphs.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,9 @@ import { GraphsComponent } from './graphs/graphs.component';
     NbEvaIconsModule,
     NbCardModule,
     NbListModule,
+    NbCheckboxModule,
+    NbToastrModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
