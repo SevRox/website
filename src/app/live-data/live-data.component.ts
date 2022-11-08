@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LivedataService } from '../livedata.service';
+import { EbikeData } from '../structs/ebikedata';
 
 @Component({
   selector: 'app-live-data',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LiveDataComponent implements OnInit {
 
-  constructor() { }
+  constructor(private livedataService: LivedataService) { }
+
+  liveData = {} as EbikeData;
+
+  getLiveData(): void{
+    this.livedataService.getLiveData().subscribe(ld => this.liveData = ld);
+    // this.liveData = this.livedataService.getLiveData();    
+  }
 
   ngOnInit(): void {
+    this.getLiveData();
   }
 
 }
