@@ -1,0 +1,33 @@
+/* under line */
+hr {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 33%;
+    height: 1px;
+    background-color: #cf7500;
+    border-color: #cf7500;
+
+    @media screen and (max-width: 540px) {
+        width: 80%;
+    }
+}
+
+// data card 
+
+.raw_data_list span {
+    align-items: center;
+    margin: 0% auto 0% auto;
+}
+
+.png-icon {
+    width: 24px;
+    height: 24px;
+    margin: auto;
+    padding: 0;
+    display: inline-block;
+    background-repeat: no-repeat no-repeat;
+    pointer-events: none;
+    filter: invert(100%);
+}

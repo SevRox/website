@@ -4,109 +4,16 @@
             <!-- <img class="logo" src="images/logo.svg" alt="logo"> -->
             <nav>
                 <ul class="nav_links">
-                    <li><a href="#">Live Data</a></li>
-                    <li><a href="#">Graph's</a></li>
-                    <li><a href="#">Settings</a></li>
+                    <li><a href="/livedata">Live Data</a></li>
+                    <li><a href="/graphs">Graph's</a></li>
+                    <li><a href="/settings">Settings</a></li>
                 </ul>
             </nav>
         
   </nb-layout-header>
 
   <nb-layout-column>
-    <body>
-        <!-- The orange line add for style -->
-        <hr> 
-        <!-- Main list with raw live data -->
-        <div>
-          <nb-card class="data_card">
-            <nb-card-header>Ebike live data, raw</nb-card-header>
-            <nb-card-body>
-              <nb-list class="raw_data_list">
-                <nb-list-item>
-                  <span>
-                    <span class="material-icons">battery_full</span>
-                    <span> Temperature, &#8451;</span>
-                  </span>
-                  <span>Value</span>
-                </nb-list-item>
-                <nb-list-item>
-                  <span>
-                    <img class="png-icon" src="../assets/transistor.png">
-                    <span> Temperature, &#8451;</span>
-                  </span>
-                  <span>Value</span>
-                </nb-list-item>
-                <nb-list-item>
-                  <span>
-                    <img class="png-icon" src="../assets/engine.png">
-                    <span> Temperature, &#8451;</span>
-                  </span>
-                  <span>Value</span>
-                </nb-list-item>
-                <nb-list-item>
-                  <span>
-                    <span class="material-icons">battery_full</span>
-                    <span> Voltage, V</span>
-                  </span>
-                  <span>Value</span>
-                </nb-list-item>
-                <nb-list-item>
-                  <span>
-                    <span class="material-icons">battery_full</span>
-                    <span> Current, A</span>
-                  </span>
-                  <span>Value</span>
-                </nb-list-item>
-                <nb-list-item>
-                  <span>
-                    <img class="png-icon" src="../assets/engine.png">
-                    <span> Current, A</span>
-                  </span>
-                  <span>Value</span>
-                </nb-list-item>
-                <nb-list-item>
-                  <span>
-                    <span class="material-icons">swipe_vertical</span>
-                    <span> Throttle, %</span>
-                  </span>
-                  <span>Value</span>
-                </nb-list-item>
-                <nb-list-item>
-                  <span>
-                    <span class="material-icons">speed</span>
-                    <span> RMP</span>
-                  </span>
-                  <span>Value</span>
-                </nb-list-item>
-                <nb-list-item>
-                  <span>
-                    <span class="material-icons">battery_alert</span>
-                    <span> Used, WH</span>
-                  </span>
-                  <span>Value</span>
-                </nb-list-item>
-                <nb-list-item>
-                  <span>
-                    <span class="material-icons">battery_alert</span>
-                    <span> Used, AH</span>
-                  </span>
-                  <span>Value</span>
-                </nb-list-item>
-                <nb-list-item>
-                  <span>
-                    <span class="material-icons">error</span>
-                    <span> Error Code</span>
-                  </span>
-                  <span>Value</span>
-                </nb-list-item>
-              </nb-list>
-            </nb-card-body>
-          </nb-card>
-        </div>
-
-    
-    </body>
-    
+     <!-- Routing to subpages -->
     <router-outlet></router-outlet>
     
   </nb-layout-column>
