@@ -1,4 +1,4 @@
-export interface recordedDataList{
+export interface RecordedDataList{
     id: number,
     day: Date,
     duration: number,

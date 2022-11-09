@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { recordedDataList } from '../structs/recordedDataList';
+import { RecordedDataList } from '../structs/recordedDataList';
+import { EbikeDataService } from '../ebikedata.service';
 @Component({
   selector: 'app-graphs',
   templateUrl: './graphs.component.html',
@@ -8,23 +9,16 @@ import { recordedDataList } from '../structs/recordedDataList';
 })
 export class GraphsComponent implements OnInit {
 
-  constructor() {}
+  constructor(private ebikedataService: EbikeDataService) {}
   
-  mock_list: recordedDataList[] = [];
+  recordedDataListTimestamps: Array<RecordedDataList> = [];
+
+  getRecordedDataListTimestamps() {
+    this.ebikedataService.getRecordedDataTimestamps().subscribe(rd => this.recordedDataListTimestamps = rd);
+  }
 
   ngOnInit(): void {
-    this.mock_list = [
-      { id: 1, day: new Date(), duration: 15, checkBoxState: false },
-      { id: 2, day: new Date(), duration: 45, checkBoxState: false },
-      { id: 3, day: new Date(), duration: 80, checkBoxState: false },
-      { id: 4, day: new Date(), duration: 12, checkBoxState: false },
-      { id: 5, day: new Date(), duration: 12, checkBoxState: false },
-      { id: 6, day: new Date(), duration: 12, checkBoxState: false },
-      { id: 7, day: new Date(), duration: 42, checkBoxState: false },
-      { id: 8, day: new Date(), duration: 12, checkBoxState: false },
-      { id: 9, day: new Date(), duration: 12, checkBoxState: false },
-    ];
-
+    this.getRecordedDataListTimestamps();
   }
 
 }
