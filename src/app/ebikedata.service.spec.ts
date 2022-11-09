@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LivedataService } from './livedata.service';
+import { EbikeDataService } from './ebikedata.service';
 
 describe('LivedataService', () => {
-  let service: LivedataService;
+  let service: EbikeDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LivedataService);
+    service = TestBed.inject(EbikeDataService);
   });
 
   it('should be created', () => {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LivedataService } from '../livedata.service';
+import { EbikeDataService } from '../ebikedata.service';
 import { EbikeData } from '../structs/ebikedata';
 import { Router } from '@angular/router';
 
@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
 })
 export class LiveDataComponent implements OnInit {
 
-  constructor(private livedataService: LivedataService, private _router: Router) { }
+  constructor(private ebikedataService: EbikeDataService, private _router: Router) { }
 
   liveData = {} as EbikeData;
 
   getLiveData(): void{
-    this.livedataService.getLiveData().subscribe(ld => this.liveData = ld);
+    this.ebikedataService.getLiveData().subscribe(ld => this.liveData = ld);
     // this.liveData = this.livedataService.getLiveData();    
   }
 
