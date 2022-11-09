@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LivedataService } from '../livedata.service';
 import { EbikeData } from '../structs/ebikedata';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-live-data',
@@ -9,7 +10,7 @@ import { EbikeData } from '../structs/ebikedata';
 })
 export class LiveDataComponent implements OnInit {
 
-  constructor(private livedataService: LivedataService) { }
+  constructor(private livedataService: LivedataService, private _router: Router) { }
 
   liveData = {} as EbikeData;
 
@@ -20,6 +21,16 @@ export class LiveDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLiveData();
+  }
+
+  onSwipeLeft(): void {
+    console.log("swiped left");
+    this._router.navigateByUrl('/graphs');
+  }
+
+  onSwipeRight() {
+    console.log("swiped right");
+    this._router.navigateByUrl('/settings');
   }
 
 }

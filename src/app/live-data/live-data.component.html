@@ -1,10 +1,11 @@
 
     <!-- The orange line add for style -->
     <hr>
+    
     <!-- Main list with raw live data -->
     <div>
-        <nb-card class="data_card" size="large">
-            <nb-card-header>
+        <nb-card class="data_card" size="large" (swipeleft)="onSwipeLeft()" (swiperight)="onSwipeRight()">
+            <nb-card-header >
                 <span>Ebike live data, raw</span>
             </nb-card-header>
             <nb-card-body>
