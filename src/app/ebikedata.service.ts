@@ -12,6 +12,30 @@ export class EbikeDataService {
 
   max = 100;
 
+  // mock 
+  getMockEbike(): EbikeData{
+      let mockdata: EbikeData = {
+      id: Math.floor(Math.random() * this.max) + 1,
+      boardId: Math.floor(Math.random() * this.max) + 1,
+      timestamp: new Date(),
+      battery_temp: Math.floor(Math.random() * this.max) + 1,
+      motor_temp: Math.floor(Math.random() * this.max) + 1,
+      mosfet_temp: Math.floor(Math.random() * this.max) + 1,
+      motor_current: Math.floor(Math.random() * this.max) + 1,
+      battery_current: Math.floor(Math.random() * this.max) + 1,
+      battery_voltage: Math.floor(Math.random() * this.max) + 1,
+      throttle_val: Math.floor(Math.random() * this.max) + 1,
+      rmp: Math.floor(Math.random() * this.max) + 1,
+      duty_cycle_now: Math.floor(Math.random() * this.max) + 1,
+      amp_hours_used: Math.floor(Math.random() * this.max) + 1,
+      amp_hours_charged: Math.floor(Math.random() * this.max) + 1,
+      watt_hours_used: Math.floor(Math.random() * this.max) + 1,
+      watt_hours_charged: Math.floor(Math.random() * this.max) + 1,
+      error_code: Math.floor(Math.random() * this.max) + 1,
+    };
+    return mockdata;
+  }
+
   getLiveData(): Observable<EbikeData>{
     // data for testing
     let mockdata: EbikeData = {
@@ -49,6 +73,15 @@ export class EbikeDataService {
       { id: 8, day: new Date(), duration: 12, checkBoxState: false },
       { id: 9, day: new Date(), duration: 12, checkBoxState: false },
     ];
+
+    return of(mockdata);
+  }
+
+  getRecordedDataById(id: number): Observable<Array<EbikeData>>{
+    let mockdata: Array<EbikeData> = [];
+    for (let index = 0; index < 30; index++) {
+      mockdata.push(this.getMockEbike());
+    }
 
     return of(mockdata);
   }
