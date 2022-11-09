@@ -9,6 +9,7 @@ import { LiveDataComponent } from './live-data/live-data.component';
 import { SettingsComponent } from './settings/settings.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { FormsModule } from '@angular/forms';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 import * as Hammmer from 'hammerjs';
 export class MyHammerConfig extends HammerGestureConfig {
@@ -38,7 +39,10 @@ export class MyHammerConfig extends HammerGestureConfig {
     FormsModule,
     NbButtonModule,
     NbToggleModule,
-    HammerModule
+    HammerModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [
     {
