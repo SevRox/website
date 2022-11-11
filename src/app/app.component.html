@@ -1,0 +1,25 @@
+<nb-layout>
+
+  <nb-layout-header fixed>
+            <!-- <img class="logo" src="images/logo.svg" alt="logo"> -->
+            <nav>
+                <ul class="nav_links">
+                    <li><a href="/livedata">Live Data</a></li>
+                    <li><a href="/graphs">Graph's</a></li>
+                    <li><a href="/settings">Settings</a></li>
+                </ul>
+            </nav>
+        
+  </nb-layout-header>
+
+  <nb-layout-column>
+     <!-- Routing to subpages -->
+    <router-outlet></router-outlet>
+    
+  </nb-layout-column>
+
+  <nb-layout-footer fixed>
+  <!-- Insert footer here -->
+  </nb-layout-footer>
+
+</nb-layout>

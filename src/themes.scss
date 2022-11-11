@@ -1,0 +1,13 @@
+@forward '@nebular/theme/styles/theming';
+@use '@nebular/theme/styles/theming' as *;
+@use '@nebular/theme/styles/themes/dark';
+
+$nb-themes: nb-register-theme((
+
+  color-basic-800: #191a1d,
+  color-basic-900: #212226,
+  color-basic-1000: #212226,
+
+  shadow: 0 0.5rem 1rem 0 rgba(207, 76, 0, 0.123),
+
+), ourTheme, dark);

@@ -1,0 +1,22 @@
+<nb-card size="small">
+    <nb-card-header class="card_header_with_button">
+        <span>Chose data</span>
+        <button nbButton (click)="getChoosenEbikeData()" shape="semi-round" size="tiny">Import</button>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item *ngFor="let timestamp of recordedDataListTimestamps">
+                <span class="recorded_data_list_span_left">{{timestamp.day.getDay()}}.{{timestamp.day.getMonth()}}.{{timestamp.day.getFullYear()}}, {{timestamp.day.toLocaleTimeString()}}</span>
+                <span class="recorded_data_list_span_right">{{timestamp.duration}} min</span>
+                <nb-checkbox [(ngModel)]="timestamp.checkBoxState"></nb-checkbox>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+</nb-card>
+
+<nb-card size="medium">
+    <nb-card-header>Temperatures</nb-card-header>
+    <nb-card-body>
+        <div echarts [options]="chartOption" class="demo-chart"></div>
+    </nb-card-body>
+</nb-card>
