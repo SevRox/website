@@ -3,6 +3,7 @@ import { RecordedDataList } from '../structs/recordedDataList';
 import { EbikeDataService } from '../ebikedata.service';
 import { EbikeData } from '../structs/ebikedata';
 import { EChartsOption } from 'echarts';
+import { NbTreeGridHeaderCellDirective } from '@nebular/theme';
 
 @Component({
   selector: 'app-graphs',
@@ -13,21 +14,7 @@ export class GraphsComponent implements OnInit {
 
   constructor(private ebikedataService: EbikeDataService) { }
 
-  chartOption: EChartsOption = {
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    },
-    yAxis: {
-      type: 'value'
-    },
-    series: [{
-      data: [820, 932, 901, 934, 1290, 1430, 1550, 1200, 1650.1450, 1680.1890],
-      type: 'line',
-      areaStyle: {}
-    }]
-  }
+  chartOption: EChartsOption = {};
 
   recordedDataListTimestamps: Array<RecordedDataList> = [];
   ebikeDataList: Array<Array<EbikeData>> = [];
@@ -52,6 +39,62 @@ export class GraphsComponent implements OnInit {
       .forEach(checked => { this.ebikedataService.getRecordedDataById(checked.id).subscribe(ebd => this.ebikeDataList.push(ebd)) });
     
     console.log(this.ebikeDataList);
+
+    this.createTemChart();
+  }
+
+  createTemChart() {
+    let firstTime = this.ebikeDataList[0][0].timestamp.getTime();
+
+    this.chartOption = {
+      toolbox: {
+        feature: {
+          dataZoom: {},
+          restore: {},
+          dataView: {},
+          saveAsImage: {}
+        }
+      },
+      legend: {
+        show: true,
+        bottom: 1,
+      },
+      dataZoom: {
+        type: 'inside'
+      },
+      xAxis: {
+        type: 'value',
+        min: 0,
+        boundaryGap: false,
+      },
+      yAxis: {
+        min: 0,
+        type: 'value'
+      },
+      series: [
+      {
+        name: "Momot temperature",
+        data: this.ebikeDataList[0].map((edata) => [(edata.timestamp.getTime() - firstTime) / 60, edata.motor_temp ]),
+        type: 'line',
+        smooth: true,
+        // areaStyle: {}
+      },
+      {
+        name: "Mosfet temperature",
+        data: this.ebikeDataList[0].map((edata) => [(edata.timestamp.getTime() - firstTime) / 60, edata.mosfet_temp ]),
+        type: 'line',
+        smooth: true,
+        // areaStyle: {}
+      },
+      {
+        name: "Battery temperature",
+        data: this.ebikeDataList[0].map((edata) => [(edata.timestamp.getTime() - firstTime) / 60, edata.battery_temp ]),
+        type: 'line',
+        smooth: true,
+        // areaStyle: {}
+      }
+      ]
+    }
   }
 
 }

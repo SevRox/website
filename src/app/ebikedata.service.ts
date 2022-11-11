@@ -79,8 +79,14 @@ export class EbikeDataService {
 
   getRecordedDataById(id: number): Observable<Array<EbikeData>>{
     let mockdata: Array<EbikeData> = [];
-    for (let index = 0; index < 30; index++) {
-      mockdata.push(this.getMockEbike());
+    mockdata.push(this.getMockEbike());
+    for (let index = 0; index < 100; index++) {
+      let sectemdata = this.getMockEbike();
+      sectemdata.timestamp.setTime(mockdata[index].timestamp.getTime() + 1000);
+      sectemdata.motor_temp = mockdata[index].motor_temp + Math.random() * 5 - 2.5;
+      sectemdata.mosfet_temp = mockdata[index].mosfet_temp + Math.random() * 5 - 2.5;
+      sectemdata.battery_temp = mockdata[index].battery_temp + Math.random() * 5 - 2.5;
+      mockdata.push(sectemdata);
     }
 
     return of(mockdata);
