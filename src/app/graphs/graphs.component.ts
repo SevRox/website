@@ -37,14 +37,14 @@ export class GraphsComponent implements OnInit {
     this.recordedDataListTimestamps.filter(
       (checked) => { return checked.checkBoxState == true })
       .forEach(checked => { this.ebikedataService.getRecordedDataById(checked.id).subscribe(ebd => this.ebikeDataList.push(ebd)) });
-    
+
     console.log(this.ebikeDataList);
 
     this.createTemChart();
   }
 
   createTemChart() {
-    let firstTime = this.ebikeDataList[0][0].timestamp.getTime();
+    let firstTime = this.ebikeDataList[0][0].time_stamp.getTime();
 
     this.chartOption = {
       toolbox: {
@@ -72,27 +72,27 @@ export class GraphsComponent implements OnInit {
         type: 'value'
       },
       series: [
-      {
-        name: "Momot temperature",
-        data: this.ebikeDataList[0].map((edata) => [(edata.timestamp.getTime() - firstTime) / 60, edata.motor_temp ]),
-        type: 'line',
-        smooth: true,
-        // areaStyle: {}
-      },
-      {
-        name: "Mosfet temperature",
-        data: this.ebikeDataList[0].map((edata) => [(edata.timestamp.getTime() - firstTime) / 60, edata.mosfet_temp ]),
-        type: 'line',
-        smooth: true,
-        // areaStyle: {}
-      },
-      {
-        name: "Battery temperature",
-        data: this.ebikeDataList[0].map((edata) => [(edata.timestamp.getTime() - firstTime) / 60, edata.battery_temp ]),
-        type: 'line',
-        smooth: true,
-        // areaStyle: {}
-      }
+        {
+          name: "Momot temperature",
+          data: this.ebikeDataList[0].map((edata) => [(edata.time_stamp.getTime() - firstTime) / 60, edata.motor_temp]),
+          type: 'line',
+          smooth: true,
+          // areaStyle: {}
+        },
+        {
+          name: "Mosfet temperature",
+          data: this.ebikeDataList[0].map((edata) => [(edata.time_stamp.getTime() - firstTime) / 60, edata.mosfet_temp]),
+          type: 'line',
+          smooth: true,
+          // areaStyle: {}
+        },
+        {
+          name: "Battery temperature",
+          data: this.ebikeDataList[0].map((edata) => [(edata.time_stamp.getTime() - firstTime) / 60, edata.battery_temp]),
+          type: 'line',
+          smooth: true,
+          // areaStyle: {}
+        }
       ]
     }
   }

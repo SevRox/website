@@ -14,9 +14,8 @@ export class LiveDataComponent implements OnInit {
 
   liveData = {} as EbikeData;
 
-  getLiveData(): void{
+  getLiveData(): void {
     this.ebikedataService.getLiveData().subscribe(ld => this.liveData = ld);
-    // this.liveData = this.livedataService.getLiveData();    
   }
 
   ngOnInit(): void {

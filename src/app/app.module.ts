@@ -10,6 +10,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { FormsModule } from '@angular/forms';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { HttpClientModule } from '@angular/common/http';
 
 import * as Hammmer from 'hammerjs';
 export class MyHammerConfig extends HammerGestureConfig {
@@ -31,6 +32,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'ourTheme' }),
     NbLayoutModule,
+    HttpClientModule,
     NbEvaIconsModule,
     NbCardModule,
     NbListModule,

@@ -1,30 +1,34 @@
 import { Injectable } from '@angular/core';
 import { EbikeData } from './structs/ebikedata';
 import { RecordedDataList } from './structs/recordedDataList';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of, pipe } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { TransformDate } from './dateConverter';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EbikeDataService {
 
-  constructor() { }
+  url = 'https://fad18710-c488-4194-9f3e-8c935b8d4c04.mock.pstmn.io';
+
+  constructor(private http: HttpClient) { }
 
   max = 100;
 
   // mock 
-  getMockEbike(): EbikeData{
-      let mockdata: EbikeData = {
+  getMockEbike(): EbikeData {
+    let mockdata: EbikeData = {
       id: Math.floor(Math.random() * this.max) + 1,
-      boardId: Math.floor(Math.random() * this.max) + 1,
-      timestamp: new Date(),
+      board_mac: String(Math.floor(Math.random() * this.max) + 1),
+      time_stamp: new Date(),
       battery_temp: Math.floor(Math.random() * this.max) + 1,
       motor_temp: Math.floor(Math.random() * this.max) + 1,
       mosfet_temp: Math.floor(Math.random() * this.max) + 1,
       motor_current: Math.floor(Math.random() * this.max) + 1,
       battery_current: Math.floor(Math.random() * this.max) + 1,
       battery_voltage: Math.floor(Math.random() * this.max) + 1,
-      throttle_val: Math.floor(Math.random() * this.max) + 1,
+      throttle_value: Math.floor(Math.random() * this.max) + 1,
       rmp: Math.floor(Math.random() * this.max) + 1,
       duty_cycle_now: Math.floor(Math.random() * this.max) + 1,
       amp_hours_used: Math.floor(Math.random() * this.max) + 1,
@@ -36,28 +40,9 @@ export class EbikeDataService {
     return mockdata;
   }
 
-  getLiveData(): Observable<EbikeData>{
-    // data for testing
-    let mockdata: EbikeData = {
-      id: Math.floor(Math.random() * this.max) + 1,
-      boardId: Math.floor(Math.random() * this.max) + 1,
-      timestamp: new Date(),
-      battery_temp: Math.floor(Math.random() * this.max) + 1,
-      motor_temp: Math.floor(Math.random() * this.max) + 1,
-      mosfet_temp: Math.floor(Math.random() * this.max) + 1,
-      motor_current: Math.floor(Math.random() * this.max) + 1,
-      battery_current: Math.floor(Math.random() * this.max) + 1,
-      battery_voltage: Math.floor(Math.random() * this.max) + 1,
-      throttle_val: Math.floor(Math.random() * this.max) + 1,
-      rmp: Math.floor(Math.random() * this.max) + 1,
-      duty_cycle_now: Math.floor(Math.random() * this.max) + 1,
-      amp_hours_used: Math.floor(Math.random() * this.max) + 1,
-      amp_hours_charged: Math.floor(Math.random() * this.max) + 1,
-      watt_hours_used: Math.floor(Math.random() * this.max) + 1,
-      watt_hours_charged: Math.floor(Math.random() * this.max) + 1,
-      error_code: Math.floor(Math.random() * this.max) + 1,
-    };
-    return of(mockdata);
+  @TransformDate
+  getLiveData(): Observable<EbikeData> {
+    return this.http.get<EbikeData>(this.url + '/web/livedata');
   }
 
   getRecordedDataTimestamps(): Observable<Array<RecordedDataList>> {
@@ -77,12 +62,12 @@ export class EbikeDataService {
     return of(mockdata);
   }
 
-  getRecordedDataById(id: number): Observable<Array<EbikeData>>{
+  getRecordedDataById(id: number): Observable<Array<EbikeData>> {
     let mockdata: Array<EbikeData> = [];
     mockdata.push(this.getMockEbike());
     for (let index = 0; index < 100; index++) {
       let sectemdata = this.getMockEbike();
-      sectemdata.timestamp.setTime(mockdata[index].timestamp.getTime() + 1000);
+      sectemdata.time_stamp.setTime(mockdata[index].time_stamp.getTime() + 1000);
       sectemdata.motor_temp = mockdata[index].motor_temp + Math.random() * 5 - 2.5;
       sectemdata.mosfet_temp = mockdata[index].mosfet_temp + Math.random() * 5 - 2.5;
       sectemdata.battery_temp = mockdata[index].battery_temp + Math.random() * 5 - 2.5;

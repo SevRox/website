@@ -1,14 +1,14 @@
 export interface EbikeData {
     id: number;
-    boardId: number;
-    timestamp: Date;
+    board_mac: string;
+    time_stamp: Date;
     battery_temp: number;
     motor_temp: number;
     mosfet_temp: number;
     motor_current: number;
     battery_current: number;
     battery_voltage: number;
-    throttle_val: number;
+    throttle_value: number;
     rmp: number;
     duty_cycle_now: number;
     amp_hours_used: number;
