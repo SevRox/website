@@ -97,7 +97,8 @@
             </nb-list>
         </nb-card-body>
         <nb-card-footer>
-            <nb-toggle labelPosition="left">Record</nb-toggle>
+            <nb-toggle [(ngModel)]="toogleNgRecord" (ngModelChange)="RecordToogleChange($event)" labelPosition="left">
+                Record</nb-toggle>
         </nb-card-footer>
     </nb-card>
 </div>

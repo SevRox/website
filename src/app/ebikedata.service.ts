@@ -76,4 +76,8 @@ export class EbikeDataService {
 
     return of(mockdata);
   }
+
+  postRecordToogleState(state: boolean) {
+    return this.http.post(this.url + '/web/recordstatus/' + state + '/update', {}).subscribe();
+  }
 }

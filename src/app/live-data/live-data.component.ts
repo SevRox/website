@@ -10,9 +10,10 @@ import { Router } from '@angular/router';
 })
 export class LiveDataComponent implements OnInit {
 
-  constructor(private ebikedataService: EbikeDataService, private _router: Router) { }
-
   liveData = {} as EbikeData;
+  toogleNgRecord = false;
+
+  constructor(private ebikedataService: EbikeDataService, private _router: Router) { }
 
   getLiveData(): void {
     this.ebikedataService.getLiveData().subscribe(ld => this.liveData = ld);
@@ -32,4 +33,7 @@ export class LiveDataComponent implements OnInit {
     this._router.navigateByUrl('/settings');
   }
 
+  RecordToogleChange(state: boolean) {
+    this.ebikedataService.postRecordToogleState(state);
+  }
 }
