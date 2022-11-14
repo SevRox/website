@@ -12,16 +12,14 @@ import { NbTreeGridHeaderCellDirective } from '@nebular/theme';
 })
 export class GraphsComponent implements OnInit {
 
-  constructor(private ebikedataService: EbikeDataService) { }
-
   chartOption: EChartsOption = {};
-
   recordedDataListTimestamps: Array<RecordedDataList> = [];
   ebikeDataList: Array<Array<EbikeData>> = [];
 
+  constructor(private ebikedataService: EbikeDataService) { }
+
   ngOnInit(): void {
     this.getRecordedDataListTimestamps();
-    // this.createChart();
   }
 
   getRecordedDataListTimestamps() {
@@ -37,8 +35,6 @@ export class GraphsComponent implements OnInit {
     this.recordedDataListTimestamps.filter(
       (checked) => { return checked.checkBoxState == true })
       .forEach(checked => { this.ebikedataService.getRecordedDataById(checked.id).subscribe(ebd => this.ebikeDataList.push(ebd)) });
-
-    console.log(this.ebikeDataList);
 
     this.createTemChart();
   }

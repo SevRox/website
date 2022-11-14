@@ -6,7 +6,9 @@
     <nb-card-body>
         <nb-list>
             <nb-list-item *ngFor="let timestamp of recordedDataListTimestamps">
-                <span class="recorded_data_list_span_left">{{timestamp.day.getDay()}}.{{timestamp.day.getMonth()}}.{{timestamp.day.getFullYear()}}, {{timestamp.day.toLocaleTimeString()}}</span>
+                <span
+                    class="recorded_data_list_span_left">{{timestamp.started.getDay()}}.{{timestamp.started.getMonth()}}.{{timestamp.started.getFullYear()}},
+                    {{timestamp.started.toLocaleTimeString()}}</span>
                 <span class="recorded_data_list_span_right">{{timestamp.duration}} min</span>
                 <nb-checkbox [(ngModel)]="timestamp.checkBoxState"></nb-checkbox>
             </nb-list-item>
