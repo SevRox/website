@@ -74,6 +74,9 @@ export class EbikeDataService {
       sectemdata.motor_temp = mockdata[index].motor_temp + Math.random() * 5 - 2.5;
       sectemdata.mosfet_temp = mockdata[index].mosfet_temp + Math.random() * 5 - 2.5;
       sectemdata.battery_temp = mockdata[index].battery_temp + Math.random() * 5 - 2.5;
+      sectemdata.motor_current = mockdata[index].motor_current + Math.random() * 5 - 2.5;
+      sectemdata.battery_current = mockdata[index].battery_current + Math.random() * 5 - 2.5;
+      sectemdata.battery_voltage = mockdata[index].battery_voltage + Math.random() * 15 - 7;
       mockdata.push(sectemdata);
     }
 
