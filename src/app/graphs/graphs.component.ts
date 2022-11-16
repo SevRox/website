@@ -4,6 +4,7 @@ import { EbikeDataService } from '../ebikedata.service';
 import { EbikeData } from '../structs/ebikedata';
 import { EChartsOption } from 'echarts';
 import { NbTreeGridHeaderCellDirective } from '@nebular/theme';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-graphs',
@@ -15,6 +16,7 @@ export class GraphsComponent implements OnInit {
   temChart: EChartsOption = {};
   VolCurrChart: EChartsOption = {};
   AmpWattUsedChart: EChartsOption = {};
+
   recordedDataListTimestamps: Array<RecordedDataList> = [];
   ebikeDataList: Array<Array<EbikeData>> = [];
 
@@ -25,24 +27,27 @@ export class GraphsComponent implements OnInit {
   }
 
   getRecordedDataListTimestamps() {
-    this.ebikedataService.getRecordedDataTimestamps().subscribe(rd => this.recordedDataListTimestamps = rd);
+    this.ebikedataService.getRecordedDataTimestamps().subscribe(rd => {
+      this.recordedDataListTimestamps = rd;
+    });
   }
 
   getChoosenEbikeData() {
 
-    // cleaning the array of data
     this.ebikeDataList.splice(0);
 
     // getiing all chosen data
     this.recordedDataListTimestamps.filter(
       (checked) => { return checked.checkBoxState == true })
-      .forEach(checked => { this.ebikedataService.getRecordedDataById(checked.id).subscribe(ebd => this.ebikeDataList.push(ebd)) });
-
-    console.log(this.ebikeDataList);
-
-    this.createTemChart();
-    this.createVolCurrChart();
-    this.createAmpWattUsedChart();
+      .forEach(checked => {
+        this.ebikedataService.getRecordedDataById(checked.id).subscribe(ebd => {
+          this.ebikeDataList.push(ebd)
+          console.log(this.ebikeDataList);
+          this.createTemChart();
+          this.createVolCurrChart();
+          this.createAmpWattUsedChart();
+        })
+      });
   }
 
   createTemChart() {

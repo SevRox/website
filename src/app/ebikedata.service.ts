@@ -66,21 +66,33 @@ export class EbikeDataService {
   }
 
   getRecordedDataById(id: number): Observable<Array<EbikeData>> {
-    let mockdata: Array<EbikeData> = [];
-    mockdata.push(this.getMockEbike());
-    for (let index = 0; index < 100; index++) {
-      let sectemdata = this.getMockEbike();
-      sectemdata.time_stamp.setTime(mockdata[index].time_stamp.getTime() + 1000);
-      sectemdata.motor_temp = mockdata[index].motor_temp + Math.random() * 5 - 2.5;
-      sectemdata.mosfet_temp = mockdata[index].mosfet_temp + Math.random() * 5 - 2.5;
-      sectemdata.battery_temp = mockdata[index].battery_temp + Math.random() * 5 - 2.5;
-      sectemdata.motor_current = mockdata[index].motor_current + Math.random() * 5 - 2.5;
-      sectemdata.battery_current = mockdata[index].battery_current + Math.random() * 5 - 2.5;
-      sectemdata.battery_voltage = mockdata[index].battery_voltage + Math.random() * 15 - 7;
-      mockdata.push(sectemdata);
-    }
-
-    return of(mockdata);
+    return this.http.get<Array<EbikeData>>(this.url + '/web/data/recorded/' + id).pipe(
+      map((receivedData: Array<EbikeData>) => {
+        let temData: Array<EbikeData> = [];
+        receivedData.forEach((element) => {
+          temData.push({
+            id: element.id,
+            board_mac: element.board_mac,
+            time_stamp: new Date(element.time_stamp),
+            battery_temp: element.battery_temp,
+            motor_temp: element.motor_temp,
+            mosfet_temp: element.mosfet_temp,
+            motor_current: element.motor_current,
+            battery_current: element.battery_current,
+            battery_voltage: element.battery_voltage,
+            throttle_value: element.throttle_value,
+            rmp: element.rmp,
+            duty_cycle_now: element.duty_cycle_now,
+            amp_hours_used: element.amp_hours_used,
+            amp_hours_charged: element.amp_hours_charged,
+            watt_hours_used: element.watt_hours_used,
+            watt_hours_charged: element.watt_hours_charged,
+            error_code: element.error_code
+          });
+        });
+        return temData;
+      }
+      ));
   }
 
   postRecordToogleState(state: boolean) {
