@@ -3,7 +3,7 @@ import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG, HammerModule
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbCheckboxModule, NbToastrModule, NbButtonModule, NbToggleModule, NbRadioModule, NbUserModule, NbMenuModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbCheckboxModule, NbToastrModule, NbButtonModule, NbToggleModule, NbRadioModule, NbUserModule, NbMenuModule, NbWindowModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LiveDataComponent } from './live-data/live-data.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -13,6 +13,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { HttpClientModule } from '@angular/common/http';
 
 import * as Hammmer from 'hammerjs';
+import { DeleteBoardComponent } from './delete-board/delete-board.component';
 export class MyHammerConfig extends HammerGestureConfig {
   override overrides = <any>{
     swipe: { direction: Hammer.DIRECTION_ALL }
@@ -24,7 +25,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     AppComponent,
     LiveDataComponent,
     SettingsComponent,
-    GraphsComponent
+    GraphsComponent,
+    DeleteBoardComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ export class MyHammerConfig extends HammerGestureConfig {
       echarts: () => import('echarts')
     }),
     NbUserModule,
-    NbMenuModule.forRoot()
+    NbMenuModule.forRoot(),
+    NbWindowModule.forRoot()
   ],
   providers: [
     {

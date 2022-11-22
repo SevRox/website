@@ -1,0 +1,14 @@
+<nb-card size="small">
+    <nb-card-header class="card_header_with_button">
+        <span>Deleting your boards will delete all the data asiocietet with it !</span>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item class="boards-li" *ngFor="let board of userBoards">
+                <span> {{board.name}} </span>
+                <button nbButton (click)="deleteBoard(board)" status="danger" shape="semi-round"
+                    size="tiny">Delete</button>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+</nb-card>

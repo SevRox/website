@@ -15,4 +15,8 @@ export class UserDataService {
   getUserBoards(): Observable<Array<BoardData>> {
     return this.http.get<Array<BoardData>>(this.url + "/web/all");
   }
+
+  deleteBoard(board_mac: string) {
+    this.http.delete(this.url + "/web/delete/" + board_mac).subscribe();
+  }
 }
