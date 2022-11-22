@@ -3,7 +3,7 @@ import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG, HammerModule
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbCheckboxModule, NbToastrModule, NbButtonModule, NbToggleModule, NbRadioModule, NbUserModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbCheckboxModule, NbToastrModule, NbButtonModule, NbToggleModule, NbRadioModule, NbUserModule, NbMenuModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LiveDataComponent } from './live-data/live-data.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -46,7 +46,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     }),
-    NbUserModule
+    NbUserModule,
+    NbMenuModule.forRoot()
   ],
   providers: [
     {

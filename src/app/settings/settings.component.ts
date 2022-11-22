@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NbMenuItem, NbMenuService } from '@nebular/theme';
+import { filter, map } from 'rxjs';
 import { BoardData } from '../structs/boards';
 import { UserDataService } from '../user-data.service';
 
@@ -12,12 +14,58 @@ export class SettingsComponent implements OnInit {
   userName: string = "Bartosz Kowalski";
   userBoards: Array<BoardData> = [];
 
-  constructor(private userDataService: UserDataService) {
+  menuItems: NbMenuItem[] = [
+    {
+      title: 'Profile',
+      children: [
+        {
+          title: 'Change Password',
+        },
+        {
+          title: 'Privacy Policy',
+        },
+        {
+          title: 'Logout',
+        },
+      ],
+    },
+    {
+      title: 'Boards',
+      children: [
+        {
+          title: 'Register',
+        },
+        {
+          title: 'Delete',
+        },
+        {
+          title: 'Check status',
+        },
+      ],
+    },
+  ];
 
-  }
+
+  constructor(private userDataService: UserDataService, private menuService: NbMenuService) { }
 
   ngOnInit(): void {
     this.getUserBoards();
+
+    this.menuService.onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === 'settingsMenu'),
+      )
+      .subscribe((event) => {
+        switch (event.item.title) {
+          case 'Register':
+            console.log("test");
+            break;
+
+          default:
+            console.log("default");
+            break;
+        }
+      });
   }
 
   getUserBoards() {
