@@ -1,1 +1,27 @@
-<p>settings works!</p>
+<nb-card>
+    <nb-card-body>
+
+        <p>Profile</p>
+        <nb-user size="large" name={{userName}} title="none" showTitle=false>
+        </nb-user>
+
+    </nb-card-body>
+</nb-card>
+
+<nb-card size="small">
+    <nb-card-header class="card_header_with_button">
+        <span>My Boards</span>
+        <button nbButton (click)="getUserBoards()" shape="semi-round" size="tiny">Refresh</button>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item class="boards-li" *ngFor="let board of userBoards">
+                <span> {{board.name}} </span>
+                <span> {{board.mac_address}}</span>
+                <button nbButton (click)="selectBoard(board)" shape="semi-round" size="tiny">
+                    <span class="material-icons">{{getIcon(board)}}</span>
+                </button>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+</nb-card>
