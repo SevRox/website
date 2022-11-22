@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NbMenuItem, NbMenuService } from '@nebular/theme';
+import { NbMenuItem, NbMenuService, NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
 import { filter, map } from 'rxjs';
 import { BoardData } from '../structs/boards';
 import { UserDataService } from '../user-data.service';
+import { DeleteBoardComponent } from '../delete-board/delete-board.component';
 
 @Component({
   selector: 'app-settings',
@@ -45,8 +46,7 @@ export class SettingsComponent implements OnInit {
     },
   ];
 
-
-  constructor(private userDataService: UserDataService, private menuService: NbMenuService) { }
+  constructor(private userDataService: UserDataService, private menuService: NbMenuService, private windowService: NbWindowService) { }
 
   ngOnInit(): void {
     this.getUserBoards();
@@ -57,8 +57,8 @@ export class SettingsComponent implements OnInit {
       )
       .subscribe((event) => {
         switch (event.item.title) {
-          case 'Register':
-            console.log("test");
+          case 'Delete':
+            this.openDeleteWindow();
             break;
 
           default:
@@ -72,6 +72,10 @@ export class SettingsComponent implements OnInit {
     this.userDataService.getUserBoards().subscribe(userBoards => { this.userBoards = userBoards });
   }
 
+  deleteBoard(board: BoardData) {
+    this.userDataService.deleteBoard(board.mac_address);
+  }
+
   selectBoard(board: BoardData) {
     this.userBoards.forEach(board => { board.last_choosen = false; });
 
@@ -81,6 +85,19 @@ export class SettingsComponent implements OnInit {
 
   getIcon(board: BoardData) {
     return this.userBoards.at(this.userBoards.indexOf(board))?.last_choosen == true ? "done" : "close";
+  }
+
+  openDeleteWindow() {
+    const buttonsConfig: NbWindowControlButtonsConfig = {
+      minimize: false,
+      maximize: false,
+      fullScreen: false,
+      close: true,
+    };
+
+    const windowRef = this.windowService.open(DeleteBoardComponent, { title: `Warning`, buttons: buttonsConfig });
+
+    windowRef.onClose.subscribe((boradToDelete) => this.deleteBoard(boradToDelete));
   }
 
 }
