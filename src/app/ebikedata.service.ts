@@ -4,13 +4,12 @@ import { RecordedDataList, HttpRecordedDataList } from './structs/recordedDataLi
 import { map, Observable, of, pipe, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { TransformDate } from './dateConverter';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EbikeDataService {
-
-  url = 'https://fad18710-c488-4194-9f3e-8c935b8d4c04.mock.pstmn.io';
 
   constructor(private http: HttpClient) { }
 
@@ -42,11 +41,11 @@ export class EbikeDataService {
 
   @TransformDate
   getLiveData(): Observable<EbikeData> {
-    return this.http.get<EbikeData>(this.url + '/web/livedata');
+    return this.http.get<EbikeData>(environment.backendUrl + '/web/livedata');
   }
 
   getRecordedDataTimestamps(): Observable<Array<RecordedDataList>> {
-    return this.http.get<Array<HttpRecordedDataList>>(this.url + '/web/data/timestamps').pipe(
+    return this.http.get<Array<HttpRecordedDataList>>(environment.backendUrl + '/web/data/timestamps').pipe(
       map((receivedData: Array<HttpRecordedDataList>) => {
         let temData: Array<RecordedDataList> = [];
         receivedData.forEach((element) => {
@@ -66,7 +65,7 @@ export class EbikeDataService {
   }
 
   getRecordedDataById(id: number): Observable<Array<EbikeData>> {
-    return this.http.get<Array<EbikeData>>(this.url + '/web/data/recorded/' + id).pipe(
+    return this.http.get<Array<EbikeData>>(environment.backendUrl + '/web/data/recorded/' + id).pipe(
       map((receivedData: Array<EbikeData>) => {
         let temData: Array<EbikeData> = [];
         receivedData.forEach((element) => {
@@ -96,6 +95,6 @@ export class EbikeDataService {
   }
 
   postRecordToogleState(state: boolean) {
-    return this.http.post(this.url + '/web/recordstatus/' + state + '/update', {}).subscribe();
+    return this.http.post(environment.backendUrl + '/web/recordstatus/' + state + '/update', {}).subscribe();
   }
 }
