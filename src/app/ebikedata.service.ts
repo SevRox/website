@@ -5,6 +5,7 @@ import { map, Observable, of, pipe, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { TransformDate } from './dateConverter';
 import { environment } from 'src/environments/environment';
+import { GlobalConstants } from './common/global-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -41,11 +42,11 @@ export class EbikeDataService {
 
   @TransformDate
   getLiveData(): Observable<EbikeData> {
-    return this.http.get<EbikeData>(environment.backendUrl + '/web/livedata');
+    return this.http.get<EbikeData>(environment.backendUrl + 'data/web/' + GlobalConstants.choosenBoardMac + '/livedata');
   }
 
   getRecordedDataTimestamps(): Observable<Array<RecordedDataList>> {
-    return this.http.get<Array<HttpRecordedDataList>>(environment.backendUrl + '/web/data/timestamps').pipe(
+    return this.http.get<Array<HttpRecordedDataList>>(environment.backendUrl + 'time/web/' + GlobalConstants.choosenBoardMac + '/timestamps').pipe(
       map((receivedData: Array<HttpRecordedDataList>) => {
         let temData: Array<RecordedDataList> = [];
         receivedData.forEach((element) => {
@@ -65,7 +66,7 @@ export class EbikeDataService {
   }
 
   getRecordedDataById(id: number): Observable<Array<EbikeData>> {
-    return this.http.get<Array<EbikeData>>(environment.backendUrl + '/web/data/recorded/' + id).pipe(
+    return this.http.get<Array<EbikeData>>(environment.backendUrl + 'data/web/' + GlobalConstants.choosenBoardMac + '/record/' + id).pipe(
       map((receivedData: Array<EbikeData>) => {
         let temData: Array<EbikeData> = [];
         receivedData.forEach((element) => {
@@ -95,6 +96,7 @@ export class EbikeDataService {
   }
 
   postRecordToogleState(state: boolean) {
-    return this.http.post(environment.backendUrl + '/web/recordstatus/' + state + '/update', {}).subscribe();
+    this.http.post(environment.backendUrl + '/data/web/recordstatus/' + state, {}).subscribe();
+    return this.http.post(environment.backendUrl + '/time/web/recordstatus/' + state, {}).subscribe();
   }
 }

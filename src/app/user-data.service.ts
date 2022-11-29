@@ -12,10 +12,10 @@ export class UserDataService {
   constructor(private http: HttpClient) { }
 
   getUserBoards(): Observable<Array<BoardData>> {
-    return this.http.get<Array<BoardData>>(environment.backendUrl + "/web/all");
+    return this.http.get<Array<BoardData>>(environment.backendUrl + 'boards/web/all/9');
   }
 
   deleteBoard(board_mac: string) {
-    this.http.delete(environment.backendUrl + "/web/delete/" + board_mac).subscribe();
+    this.http.delete(environment.backendUrl + 'boards/web/delete/' + board_mac).subscribe();
   }
 }

@@ -4,6 +4,7 @@ import { filter, map } from 'rxjs';
 import { BoardData } from '../structs/boards';
 import { UserDataService } from '../user-data.service';
 import { DeleteBoardComponent } from '../delete-board/delete-board.component';
+import { GlobalConstants } from '../common/global-constants';
 
 @Component({
   selector: 'app-settings',
@@ -81,6 +82,8 @@ export class SettingsComponent implements OnInit {
 
     let index = this.userBoards.indexOf(board);
     this.userBoards.at(index)!.last_choosen = !this.userBoards.at(index)?.last_choosen;
+
+    GlobalConstants.choosenBoardMac = this.userBoards.at(index)!.mac_address;
   }
 
   getIcon(board: BoardData) {
