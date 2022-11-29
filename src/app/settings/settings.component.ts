@@ -100,7 +100,10 @@ export class SettingsComponent implements OnInit {
 
     const windowRef = this.windowService.open(DeleteBoardComponent, { title: `Warning`, buttons: buttonsConfig });
 
-    windowRef.onClose.subscribe((boradToDelete) => this.deleteBoard(boradToDelete));
+    windowRef.onClose.subscribe((boradToDelete) => {
+      if (boradToDelete !== undefined)
+        this.deleteBoard(boradToDelete);
+    });
   }
 
 }
