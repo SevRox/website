@@ -84,6 +84,7 @@ export class SettingsComponent implements OnInit {
     this.userBoards.at(index)!.last_choosen = !this.userBoards.at(index)?.last_choosen;
 
     GlobalConstants.choosenBoardMac = this.userBoards.at(index)!.mac_address;
+    console.log(GlobalConstants.choosenBoardMac);
   }
 
   getIcon(board: BoardData) {

@@ -53,7 +53,6 @@ export class EbikeDataService {
           temData.push({
             id: element.id,
             board_mac: element.board_mac,
-            name: element.name,
             started: new Date(element.started),
             ended: new Date(element.ended),
             duration: Math.floor((new Date(element.ended).getTime() - new Date(element.started).getTime()) / 60000),

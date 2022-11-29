@@ -9,7 +9,7 @@ import { LiveDataComponent } from './live-data/live-data.component';
 import { SettingsComponent } from './settings/settings.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { FormsModule } from '@angular/forms';
-import { NgxEchartsModule } from 'ngx-echarts';
+import { NgxEchartsMod } from 'ngx-echarts';
 import { HttpClientModule } from '@angular/common/http';
 
 import * as Hammmer from 'hammerjs';
