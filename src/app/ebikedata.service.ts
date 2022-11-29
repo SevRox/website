@@ -3,7 +3,6 @@ import { EbikeData } from './structs/ebikedata';
 import { RecordedDataList, HttpRecordedDataList } from './structs/recordedDataList';
 import { map, Observable, of, pipe, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { TransformDate } from './dateConverter';
 import { environment } from 'src/environments/environment';
 import { LocalService } from './local.service';
 
@@ -40,9 +39,32 @@ export class EbikeDataService {
     return mockdata;
   }
 
-  @TransformDate
   getLiveData(): Observable<EbikeData> {
-    return this.http.get<EbikeData>(environment.backendUrl + 'data/web/' + this.localStore.getData("choosenMac") + '/livedata');
+    return this.http.get<any>(environment.backendUrl + 'data/web/' + this.localStore.getData("choosenMac") + '/livedata').pipe(
+      map((receivedData: any) => {
+        let temData: EbikeData = {
+          id: receivedData.id,
+          board_mac: receivedData.board_mac,
+          time_stamp: new Date(receivedData.time_stamp),
+          battery_temp: receivedData.battery_temp,
+          motor_temp: receivedData.motor_temp,
+          mosfet_temp: receivedData.mosfet_temp,
+          motor_current: receivedData.motor_current,
+          battery_current: receivedData.input_current,
+          battery_voltage: receivedData.input_voltage,
+          throttle_value: receivedData.throttle_value,
+          rmp: receivedData.rpm,
+          duty_cycle_now: receivedData.duty_cycle_now,
+          amp_hours_used: receivedData.amp_hours,
+          amp_hours_charged: receivedData.amp_hours_charged,
+          watt_hours_used: receivedData.watt_hours,
+          watt_hours_charged: receivedData.watt_hours_charged,
+          error_code: receivedData.error_code
+        };
+          
+        return temData;
+      })
+    );
   }
 
   getRecordedDataTimestamps(): Observable<Array<RecordedDataList>> {
@@ -65,8 +87,8 @@ export class EbikeDataService {
   }
 
   getRecordedDataById(id: number): Observable<Array<EbikeData>> {
-    return this.http.get<Array<EbikeData>>(environment.backendUrl + 'data/web/' + this.localStore.getData("choosenMac") + '/record/' + id).pipe(
-      map((receivedData: Array<EbikeData>) => {
+    return this.http.get<Array<any>>(environment.backendUrl + 'data/web/' + this.localStore.getData("choosenMac") + '/record/' + id).pipe(
+      map((receivedData: Array<any>) => {
         let temData: Array<EbikeData> = [];
         receivedData.forEach((element) => {
           temData.push({
@@ -77,14 +99,14 @@ export class EbikeDataService {
             motor_temp: element.motor_temp,
             mosfet_temp: element.mosfet_temp,
             motor_current: element.motor_current,
-            battery_current: element.battery_current,
-            battery_voltage: element.battery_voltage,
+            battery_current: element.input_current,
+            battery_voltage: element.input_voltage,
             throttle_value: element.throttle_value,
-            rmp: element.rmp,
+            rmp: element.rpm,
             duty_cycle_now: element.duty_cycle_now,
-            amp_hours_used: element.amp_hours_used,
+            amp_hours_used: element.amp_hours,
             amp_hours_charged: element.amp_hours_charged,
-            watt_hours_used: element.watt_hours_used,
+            watt_hours_used: element.watt_hours,
             watt_hours_charged: element.watt_hours_charged,
             error_code: element.error_code
           });
