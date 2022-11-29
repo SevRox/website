@@ -5,14 +5,14 @@ import { map, Observable, of, pipe, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { TransformDate } from './dateConverter';
 import { environment } from 'src/environments/environment';
-import { GlobalConstants } from './common/global-constants';
+import { LocalService } from './local.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EbikeDataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private localStore: LocalService,private http: HttpClient) { }
 
   max = 100;
 
@@ -42,11 +42,11 @@ export class EbikeDataService {
 
   @TransformDate
   getLiveData(): Observable<EbikeData> {
-    return this.http.get<EbikeData>(environment.backendUrl + 'data/web/' + GlobalConstants.choosenBoardMac + '/livedata');
+    return this.http.get<EbikeData>(environment.backendUrl + 'data/web/' + this.localStore.getData("choosenMac") + '/livedata');
   }
 
   getRecordedDataTimestamps(): Observable<Array<RecordedDataList>> {
-    return this.http.get<Array<HttpRecordedDataList>>(environment.backendUrl + 'time/web/' + GlobalConstants.choosenBoardMac + '/timestamps').pipe(
+    return this.http.get<Array<HttpRecordedDataList>>(environment.backendUrl + 'time/web/' + this.localStore.getData("choosenMac") + '/timestamps').pipe(
       map((receivedData: Array<HttpRecordedDataList>) => {
         let temData: Array<RecordedDataList> = [];
         receivedData.forEach((element) => {
@@ -65,7 +65,7 @@ export class EbikeDataService {
   }
 
   getRecordedDataById(id: number): Observable<Array<EbikeData>> {
-    return this.http.get<Array<EbikeData>>(environment.backendUrl + 'data/web/' + GlobalConstants.choosenBoardMac + '/record/' + id).pipe(
+    return this.http.get<Array<EbikeData>>(environment.backendUrl + 'data/web/' + this.localStore.getData("choosenMac") + '/record/' + id).pipe(
       map((receivedData: Array<EbikeData>) => {
         let temData: Array<EbikeData> = [];
         receivedData.forEach((element) => {
