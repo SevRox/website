@@ -28,4 +28,14 @@ export class UserDataService {
   deleteBoard(board_mac: string) {
     this.http.delete(environment.backendUrl + 'boards/web/delete/' + board_mac).subscribe();
   }
+
+  registerBoard(boardData: BoardData) {
+    const body = {
+      user_id: boardData.user_id,
+      name: boardData.name,
+      mac_address: boardData.mac_address,
+      is_online: boardData.is_online
+    };
+    this.http.post<any>(environment.backendUrl + 'boards/web/register', body).subscribe();
+  }
 }

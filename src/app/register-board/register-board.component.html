@@ -1,0 +1,28 @@
+<nb-card size="medium">
+    <nb-card-header>
+        <span>Fill in you registration data</span>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="registerForm">
+            <span>Name</span>
+            <input type="text" nbInput placeholder="E.g. Stefan" [(ngModel)]="inputNameNgModel">
+        </div>
+        <div class="registerForm">
+            <span>Mac address</span>
+            <input type="text" nbInput placeholder="E.g. 010203040506" [(ngModel)]="inputMacAddressNgModel">
+        </div>
+        <div class="registerForm">
+            <span>Wifi SSID</span>
+            <input type="text" nbInput placeholder="AP SSID">
+        </div>
+        <div class="registerForm">
+            <span>Wifi Password</span>
+            <input type="text" nbInput placeholder="AP Password">
+        </div>
+    </nb-card-body>
+    <nb-card-footer class="card_footer_with_button">
+        <button nbButton (click)="connectToBoard()" shape="semi-round" size="tiny">Bluetooth connect</button>
+        <button nbButton (click)="registerBoard()" shape="semi-round" size="tiny">Register</button>
+    </nb-card-footer>
+</nb-card>
+

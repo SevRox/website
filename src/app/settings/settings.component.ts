@@ -5,6 +5,7 @@ import { BoardData } from '../structs/boards';
 import { UserDataService } from '../user-data.service';
 import { DeleteBoardComponent } from '../delete-board/delete-board.component';
 import { LocalService } from '../local.service';
+import { RegisterBoardComponent } from '../register-board/register-board.component';
 
 @Component({
   selector: 'app-settings',
@@ -58,6 +59,9 @@ export class SettingsComponent implements OnInit {
       )
       .subscribe((event) => {
         switch (event.item.title) {
+          case 'Register':
+            this.openRegisterWindow();
+            break;
           case 'Delete':
             this.openDeleteWindow();
             break;
@@ -75,6 +79,10 @@ export class SettingsComponent implements OnInit {
 
   deleteBoard(board: BoardData) {
     this.userDataService.deleteBoard(board.mac_address);
+  }
+
+  registerBoard(board: BoardData) {
+    this.userDataService.registerBoard(board);
   }
 
   selectBoard(board: BoardData) {
@@ -103,8 +111,28 @@ export class SettingsComponent implements OnInit {
     const windowRef = this.windowService.open(DeleteBoardComponent, { title: `Warning`, buttons: buttonsConfig });
 
     windowRef.onClose.subscribe((boradToDelete) => {
-      if (boradToDelete !== undefined)
+      if (boradToDelete !== undefined) {
         this.deleteBoard(boradToDelete);
+        this.getUserBoards();
+      }
+    });
+  }
+
+  openRegisterWindow() {
+    const buttonsConfig: NbWindowControlButtonsConfig = {
+      minimize: false,
+      maximize: false,
+      fullScreen: false,
+      close: true,
+    };
+
+    const windowRef = this.windowService.open(RegisterBoardComponent, { title: `Registration`, buttons: buttonsConfig });
+
+    windowRef.onClose.subscribe((boradData) => {
+      if (boradData !== undefined) {
+        console.log(boradData);
+        this.registerBoard(boradData);
+      }
     });
   }
 
