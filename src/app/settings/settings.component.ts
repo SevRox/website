@@ -132,6 +132,7 @@ export class SettingsComponent implements OnInit {
       if (boradData !== undefined) {
         console.log(boradData);
         this.registerBoard(boradData);
+        this.getUserBoards();
       }
     });
   }
