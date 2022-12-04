@@ -36,6 +36,13 @@ export class RegisterBoardComponent implements OnInit {
         { position: this.logicalPositions.BOTTOM_START, limit: 1, icon: ''}
       );
     }
+    else if (this.inputNameNgModel.length > 20 || this.inputNameNgModel.length < 4) {
+      this.toastrService.show(
+      'Name to short or to long',
+        `Error:`,
+        {position: this.logicalPositions.BOTTOM_START, limit: 1, icon: ''}
+      );
+    }
     else if (!this.macAddressREgex.test(this.inputMacAddressNgModel)) {
       this.toastrService.show(
       'Wrong mac address',
@@ -44,11 +51,11 @@ export class RegisterBoardComponent implements OnInit {
       );
     }
     else {
-      this.boardData.is_online = false;
-      this.boardData.last_choosen = false;
-      this.boardData.name = this.inputNameNgModel;
       this.boardData.mac_address = this.inputMacAddressNgModel;
       this.boardData.user_id = 9;
+      this.boardData.name = this.inputNameNgModel;
+      this.boardData.is_online = false;
+      this.boardData.last_choosen = false;
       
       this.windowRef.close(this.boardData);      
     }
