@@ -118,6 +118,6 @@ export class EbikeDataService {
 
   postRecordToogleState(state: boolean) {
     this.http.post(environment.backendUrl + 'data/web/recordstatus/' + state, {}).subscribe();
-    return this.http.post(environment.backendUrl + 'time/web/recordstatus/' + state, {}).subscribe();
+    return this.http.post(environment.backendUrl + 'time/web/' + this.localStore.getData("choosenMac") + '/recordstatus/' + state, {}).subscribe();
   }
 }
