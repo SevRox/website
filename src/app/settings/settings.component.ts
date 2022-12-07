@@ -48,7 +48,7 @@ export class SettingsComponent implements OnInit {
     },
   ];
 
-  constructor(private localStore: LocalService ,private userDataService: UserDataService, private menuService: NbMenuService, private windowService: NbWindowService) { }
+  constructor(private localStore: LocalService, private userDataService: UserDataService, private menuService: NbMenuService, private windowService: NbWindowService) { }
 
   ngOnInit(): void {
     this.getUserBoards();
@@ -75,10 +75,6 @@ export class SettingsComponent implements OnInit {
 
   getUserBoards() {
     this.userDataService.getUserBoards().subscribe(userBoards => { this.userBoards = userBoards });
-  }
-
-  deleteBoard(board: BoardData) {
-    this.userDataService.deleteBoard(board.mac_address);
   }
 
   registerBoard(board: BoardData) {
@@ -112,8 +108,9 @@ export class SettingsComponent implements OnInit {
 
     windowRef.onClose.subscribe((boradToDelete) => {
       if (boradToDelete !== undefined) {
-        this.deleteBoard(boradToDelete);
-        this.getUserBoards();
+        this.userDataService.deleteBoard(boradToDelete.mac_address).subscribe(() => {
+          this.getUserBoards();
+        });
       }
     });
   }

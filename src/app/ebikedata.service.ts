@@ -122,6 +122,6 @@ export class EbikeDataService {
   }
 
   deleteTimestamp(id: number) {
-    this.http.delete(environment.backendUrl + 'time/web/delete/' + id).subscribe();
+    return this.http.delete(environment.backendUrl + 'time/web/delete/' + id);
   }
 }

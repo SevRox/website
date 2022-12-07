@@ -65,8 +65,9 @@ export class GraphsComponent implements OnInit {
     windowRef.onClose.subscribe((id) => {
       if (id !== undefined) {
         console.log(id);
-        this.ebikedataService.deleteTimestamp(id);
-        this.getRecordedDataListTimestamps();
+        this.ebikedataService.deleteTimestamp(id).subscribe(() => {
+          this.getRecordedDataListTimestamps();
+        });
       }
     });
   }

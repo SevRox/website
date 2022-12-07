@@ -26,7 +26,7 @@ export class UserDataService {
   }
 
   deleteBoard(board_mac: string) {
-    this.http.delete(environment.backendUrl + 'boards/web/delete/' + board_mac).subscribe();
+    return this.http.delete(environment.backendUrl + 'boards/web/delete/' + board_mac);
   }
 
   registerBoard(boardData: BoardData) {
