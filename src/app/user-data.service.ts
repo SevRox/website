@@ -43,7 +43,7 @@ export class UserDataService {
     return this.http.get<any>(environment.backendUrl + 'data/web/lastboard').pipe(
       map((mac_json: any) => { 
         let address: string;
-        address = mac_json.board_mac;
+        address = mac_json.macBoard;
         return address;
       })
     );
