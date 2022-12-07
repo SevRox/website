@@ -4,6 +4,7 @@ import { EbikeData } from '../structs/ebikedata';
 import { Router } from '@angular/router';
 import { UserDataService } from '../user-data.service';
 import { LocalService } from '../local.service';
+import { interval, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-live-data',
@@ -14,6 +15,7 @@ export class LiveDataComponent implements OnInit {
 
   liveData = {} as EbikeData;
   toogleNgRecord = false;
+  intervalTime: number = 1500;
 
   constructor(private ebikedataService: EbikeDataService, private userDataService: UserDataService, private localStore: LocalService, private _router: Router) { }
 
@@ -21,15 +23,25 @@ export class LiveDataComponent implements OnInit {
     this.ebikedataService.getLiveData().subscribe(ld => this.liveData = ld);
   }
 
+  startgetLiveDataInterval(): void{
+    interval(this.intervalTime).subscribe(() => { 
+      this.getLiveData();
+    });
+  }
+
   ngOnInit(): void {
     if (this.localStore.getData("choosenMac").length == 0) {
       this.userDataService.getLastchoosenBoardByMac().subscribe((mac: string) => { 
           this.localStore.saveData("choosenMac", mac);
-          this.getLiveData();   
+          this.startgetLiveDataInterval();
         })
     }
     else {
-      this.getLiveData();
+      this.startgetLiveDataInterval();
+    }
+
+    if (this.localStore.getData("recordToogleState").length != 0) {
+      this.toogleNgRecord = (this.localStore.getData("recordToogleState") === "true")
     }
   }
 
@@ -45,5 +57,6 @@ export class LiveDataComponent implements OnInit {
 
   RecordToogleChange(state: boolean) {
     this.ebikedataService.postRecordToogleState(state);
+    this.localStore.saveData("recordToogleState", String(true));
   }
 }
