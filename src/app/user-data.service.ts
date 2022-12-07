@@ -38,4 +38,14 @@ export class UserDataService {
     };
     this.http.post<any>(environment.backendUrl + 'boards/web/register', body).subscribe();
   }
+
+  getLastchoosenBoardByMac(): Observable<string> {
+    return this.http.get<any>(environment.backendUrl + 'data/web/lastboard').pipe(
+      map((mac_json: any) => { 
+        let address: string;
+        address = mac_json.board_mac;
+        return address;
+      })
+    );
+  }
 }
