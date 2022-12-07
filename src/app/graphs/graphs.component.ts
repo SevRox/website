@@ -3,8 +3,10 @@ import { RecordedDataList } from '../structs/recordedDataList';
 import { EbikeDataService } from '../ebikedata.service';
 import { EbikeData } from '../structs/ebikedata';
 import { EChartsOption } from 'echarts';
-import { NbTreeGridHeaderCellDirective } from '@nebular/theme';
+import { NbTreeGridHeaderCellDirective, NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
 import { Observable } from 'rxjs';
+import { RegisterBoardComponent } from '../register-board/register-board.component';
+import { DeleteTimestampComponent } from '../delete-timestamp/delete-timestamp.component';
 
 @Component({
   selector: 'app-graphs',
@@ -20,7 +22,7 @@ export class GraphsComponent implements OnInit {
   recordedDataListTimestamps: Array<RecordedDataList> = [];
   ebikeDataList: Array<Array<EbikeData>> = [];
 
-  constructor(private ebikedataService: EbikeDataService) { }
+  constructor(private ebikedataService: EbikeDataService, private windowService: NbWindowService) { }
 
   ngOnInit(): void {
     this.getRecordedDataListTimestamps();
@@ -48,6 +50,25 @@ export class GraphsComponent implements OnInit {
           this.createAmpWattUsedChart();
         })
       });
+  }
+
+  openDeleteWindow() {
+    const buttonsConfig: NbWindowControlButtonsConfig = {
+      minimize: false,
+      maximize: false,
+      fullScreen: false,
+      close: true,
+    };
+
+    const windowRef = this.windowService.open(DeleteTimestampComponent, { title: `Warning`, buttons: buttonsConfig });
+
+    windowRef.onClose.subscribe((id) => {
+      if (id !== undefined) {
+        console.log(id);
+        this.ebikedataService.deleteTimestamp(id);
+        this.getRecordedDataListTimestamps();
+      }
+    });
   }
 
   createTemChart() {

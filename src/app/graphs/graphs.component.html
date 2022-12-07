@@ -1,6 +1,7 @@
 <nb-card size="small">
     <nb-card-header class="card_header_with_button">
         <span>Chose data</span>
+        <button nbButton (click)="openDeleteWindow()" shape="semi-round" size="tiny" status="danger">Delete</button>
         <button nbButton (click)="getChoosenEbikeData()" shape="semi-round" size="tiny">Import</button>
     </nb-card-header>
     <nb-card-body>

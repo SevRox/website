@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import * as Hammmer from 'hammerjs';
 import { DeleteBoardComponent } from './delete-board/delete-board.component';
 import { RegisterBoardComponent } from './register-board/register-board.component';
+import { DeleteTimestampComponent } from './delete-timestamp/delete-timestamp.component';
 export class MyHammerConfig extends HammerGestureConfig {
   override overrides = <any>{
     swipe: { direction: Hammer.DIRECTION_ALL }
@@ -28,7 +29,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     SettingsComponent,
     GraphsComponent,
     DeleteBoardComponent,
-    RegisterBoardComponent
+    RegisterBoardComponent,
+    DeleteTimestampComponent
   ],
   imports: [
     BrowserModule,

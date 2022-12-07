@@ -1,0 +1,16 @@
+<nb-card size="small">
+    <nb-card-header>
+        <span>Deleting your timestamps will delete all the data asiocietet with it !</span>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item class="boards-li" *ngFor="let timestamp of userTimestamps">
+                <span
+                    class="recorded_data_list_span_left">{{timestamp.started.getDay()}}.{{timestamp.started.getMonth()}}.{{timestamp.started.getFullYear()}},
+                    {{timestamp.started.toLocaleTimeString()}}</span>
+                <button nbButton (click)="deleteTimestamp(timestamp)" status="danger" shape="semi-round"
+                    size="tiny">Delete</button>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+</nb-card>
