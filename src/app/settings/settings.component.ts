@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NbMenuItem, NbMenuService, NbWindowControlButtonsConfig, NbWindowService } from '@nebular/theme';
-import { filter, map } from 'rxjs';
+import { filter, map, tap } from 'rxjs';
 import { BoardData } from '../structs/boards';
 import { UserDataService } from '../user-data.service';
 import { DeleteBoardComponent } from '../delete-board/delete-board.component';
 import { LocalService } from '../local.service';
 import { RegisterBoardComponent } from '../register-board/register-board.component';
+import { NbAuthService } from '@nebular/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -48,7 +50,7 @@ export class SettingsComponent implements OnInit {
     },
   ];
 
-  constructor(private localStore: LocalService, private userDataService: UserDataService, private menuService: NbMenuService, private windowService: NbWindowService) { }
+  constructor(private authService: NbAuthService, private router: Router, private localStore: LocalService, private userDataService: UserDataService, private menuService: NbMenuService, private windowService: NbWindowService) { }
 
   ngOnInit(): void {
     this.getUserBoards();
@@ -65,7 +67,10 @@ export class SettingsComponent implements OnInit {
           case 'Delete':
             this.openDeleteWindow();
             break;
-
+          case 'Logout':
+            console.log("test");
+            this.router.navigate(['auth/logout']);
+            break;
           default:
             console.log("default");
             break;

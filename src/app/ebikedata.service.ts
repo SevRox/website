@@ -2,45 +2,31 @@ import { Injectable } from '@angular/core';
 import { EbikeData } from './structs/ebikedata';
 import { RecordedDataList, HttpRecordedDataList } from './structs/recordedDataList';
 import { map, Observable, of, pipe, tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { LocalService } from './local.service';
+import { NbAuthService } from '@nebular/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EbikeDataService {
 
-  constructor(private localStore: LocalService,private http: HttpClient) { }
-
-  max = 100;
-
-  // mock 
-  getMockEbike(): EbikeData {
-    let mockdata: EbikeData = {
-      id: Math.floor(Math.random() * this.max) + 1,
-      board_mac: String(Math.floor(Math.random() * this.max) + 1),
-      time_stamp: new Date(),
-      battery_temp: Math.floor(Math.random() * this.max) + 1,
-      motor_temp: Math.floor(Math.random() * this.max) + 1,
-      mosfet_temp: Math.floor(Math.random() * this.max) + 1,
-      motor_current: Math.floor(Math.random() * this.max) + 1,
-      battery_current: Math.floor(Math.random() * this.max) + 1,
-      battery_voltage: Math.floor(Math.random() * this.max) + 1,
-      throttle_value: Math.floor(Math.random() * this.max) + 1,
-      rmp: Math.floor(Math.random() * this.max) + 1,
-      duty_cycle_now: Math.floor(Math.random() * this.max) + 1,
-      amp_hours_used: Math.floor(Math.random() * this.max) + 1,
-      amp_hours_charged: Math.floor(Math.random() * this.max) + 1,
-      watt_hours_used: Math.floor(Math.random() * this.max) + 1,
-      watt_hours_charged: Math.floor(Math.random() * this.max) + 1,
-      error_code: Math.floor(Math.random() * this.max) + 1,
-    };
-    return mockdata;
-  }
+  constructor(private localStore: LocalService, private http: HttpClient, private authService: NbAuthService) { }
 
   getLiveData(): Observable<EbikeData> {
-    return this.http.get<any>(environment.backendUrl + 'data/web/' + this.localStore.getData("choosenMac") + '/livedata').pipe(
+    let my_requestOptions;
+
+    this.authService.getToken().subscribe(token => {
+      const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      });
+    
+      my_requestOptions = { headers: headers };
+    });
+
+    return this.http.get<any>(environment.backendUrl + 'data/web/' + this.localStore.getData("choosenMac") + '/livedata', my_requestOptions).pipe(
       map((receivedData: any) => {
         let temData: EbikeData = {
           id: receivedData.id,
@@ -65,10 +51,22 @@ export class EbikeDataService {
         return temData;
       })
     );
+      
   }
 
   getRecordedDataTimestamps(): Observable<Array<RecordedDataList>> {
-    return this.http.get<Array<HttpRecordedDataList>>(environment.backendUrl + 'time/web/' + this.localStore.getData("choosenMac") + '/timestamps').pipe(
+    let my_requestOptions;
+
+    this.authService.getToken().subscribe(token => {
+      const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      });
+    
+      my_requestOptions = { headers: headers };
+    });
+
+    return this.http.get<Array<HttpRecordedDataList>>(environment.backendUrl + 'time/web/' + this.localStore.getData("choosenMac") + '/timestamps', my_requestOptions).pipe(
       map((receivedData: Array<HttpRecordedDataList>) => {
         let temData: Array<RecordedDataList> = [];
         receivedData.forEach((element) => {
@@ -87,7 +85,18 @@ export class EbikeDataService {
   }
 
   getRecordedDataById(id: number): Observable<Array<EbikeData>> {
-    return this.http.get<Array<any>>(environment.backendUrl + 'data/web/' + this.localStore.getData("choosenMac") + '/record/' + id).pipe(
+    let my_requestOptions;
+
+    this.authService.getToken().subscribe(token => {
+      const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      });
+    
+      my_requestOptions = { headers: headers };
+    });
+
+    return this.http.get<Array<any>>(environment.backendUrl + 'data/web/' + this.localStore.getData("choosenMac") + '/record/' + id, my_requestOptions).pipe(
       map((receivedData: Array<any>) => {
         let temData: Array<EbikeData> = [];
         receivedData.forEach((element) => {
@@ -117,11 +126,33 @@ export class EbikeDataService {
   }
 
   postRecordToogleState(state: boolean) {
-    this.http.post(environment.backendUrl + 'data/web/recordstatus/' + state, {}).subscribe();
-    return this.http.post(environment.backendUrl + 'time/web/' + this.localStore.getData("choosenMac") + '/recordstatus/' + state, {}).subscribe();
+    let my_requestOptions;
+
+    this.authService.getToken().subscribe(token => {
+      const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      });
+    
+      my_requestOptions = { headers: headers };
+    });
+
+    this.http.post(environment.backendUrl + 'data/web/recordstatus/' + state, {}, my_requestOptions).subscribe();
+    return this.http.post(environment.backendUrl + 'time/web/' + this.localStore.getData("choosenMac") + '/recordstatus/' + state, {}, my_requestOptions).subscribe();
   }
 
   deleteTimestamp(id: number) {
-    return this.http.delete(environment.backendUrl + 'time/web/delete/' + id);
+    let my_requestOptions;
+
+    this.authService.getToken().subscribe(token => {
+      const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      });
+    
+      my_requestOptions = { headers: headers };
+    });
+
+    return this.http.delete(environment.backendUrl + 'time/web/delete/' + id, my_requestOptions);
   }
 }

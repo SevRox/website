@@ -1,16 +1,28 @@
-@use 'themes' as *;
 
-@use '@nebular/theme/styles/globals' as *;
+// @use 'themes' as *;
+
+// @use '@nebular/theme/styles/globals' as *;
+
+// // Import the default Nebular theme
+// @import '~@nebular/theme/styles/theming';
+
+// // Import the default Nebular theme variables
+// // @import '~@nebular/theme/styles/theming/variables';
+
+// // Import the Nebular auth components and mixins
+// @import '~@nebular/theme/styles/components/auth';
+
+// @include nb-install() {
+//   @include nb-theme-global();
+//   @include nb-auth-global(); 
+// };
+
+@import 'themes';
+
+@import "~@nebular/theme/styles/globals";
+@import '~@nebular/auth/styles/globals';
 
 @include nb-install() {
-  @include nb-theme-global();
+    @include nb-theme-global();
+    @include nb-auth-global();
 };
-// /* You can add global styles to this file, and also import other style files */
-// html {
-//         /* whole side setup */
-//         box-sizing: border-box;
-//         margin: 0;
-//         padding: 0%;
-//         background-color: #212226;
-//         /* #212226 */
-//     }
