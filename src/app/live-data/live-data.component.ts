@@ -57,6 +57,6 @@ export class LiveDataComponent implements OnInit {
 
   RecordToogleChange(state: boolean) {
     this.ebikedataService.postRecordToogleState(state);
-    this.localStore.saveData("recordToogleState", String(true));
+    this.localStore.saveData("recordToogleState", String(state));
   }
 }

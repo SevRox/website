@@ -8,7 +8,7 @@
         <nb-list>
             <nb-list-item *ngFor="let timestamp of recordedDataListTimestamps">
                 <span
-                    class="recorded_data_list_span_left">{{timestamp.started.getDay()}}.{{timestamp.started.getMonth()}}.{{timestamp.started.getFullYear()}},
+                    class="recorded_data_list_span_left">{{timestamp.started.getDate()}}.{{timestamp.started.getMonth() + 1}}.{{timestamp.started.getFullYear()}},
                     {{timestamp.started.toLocaleTimeString()}}</span>
                 <span class="recorded_data_list_span_right">{{timestamp.duration}} min</span>
                 <nb-checkbox [(ngModel)]="timestamp.checkBoxState"></nb-checkbox>
@@ -19,21 +19,22 @@
 
 <nb-card size="medium">
     <nb-card-header>Temperatures</nb-card-header>
-    <nb-card-body>
-        <div echarts [options]="temChart" class="card-chart"></div>
+    <nb-card-body style="display: flex; align-items: center; justify-content: center;">
+        <div echarts [options]="temChart" class="card-chart" style="flex: 1; width: 100%; height: 100%;"></div>
     </nb-card-body>
 </nb-card>
 
+
 <nb-card size="medium">
     <nb-card-header>Currents and Voltages</nb-card-header>
-    <nb-card-body>
-        <div echarts [options]="VolCurrChart" class="card-chart"></div>
+    <nb-card-body style="display: flex; align-items: center; justify-content: center;">
+        <div echarts [options]="VolCurrChart" class="card-chart" style="flex: 1; width: 100%; height: 100%;"></div>
     </nb-card-body>
 </nb-card>
 
 <nb-card size="medium">
     <nb-card-header>Used Energy</nb-card-header>
-    <nb-card-body>
-        <div echarts [options]="AmpWattUsedChart" class="card-chart"></div>
+    <nb-card-body style="display: flex; align-items: center; justify-content: center;">
+        <div echarts [options]="AmpWattUsedChart" class="card-chart" style="flex: 1; width: 100%; height: 100%;"></div>
     </nb-card-body>
 </nb-card>

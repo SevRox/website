@@ -86,7 +86,17 @@ export class GraphsComponent implements OnInit {
       },
       legend: {
         show: true,
-        bottom: 1,
+        orient: 'horizontal',
+        // itemWidth: 25, // Set the width of each legend item to 30 pixels
+        //  itemGap: 0,
+        // align: 'left',
+        // width: '100%', // Set the width of the legend area to 50% of the chart width
+        // height: '50%', // Set the height of the legend area to 50% of the chart height
+        bottom: -20,
+        textStyle: {
+          color: '#fff', // Set the text color to white
+          // fontSize: 8 // Set the font size of the legend items to 12 pixels
+        }
       },
       dataZoom: {
         type: 'inside'
@@ -95,12 +105,15 @@ export class GraphsComponent implements OnInit {
         type: 'value',
         min: 0,
         boundaryGap: false,
-        name: 'Time, s'
+        name: 'Time, s',
+        nameLocation: 'middle',
+        nameGap: 25,
       },
       yAxis: {
         min: 0,
         type: 'value',
-        name: 'Temperature, °C',
+        name: '         Temperature, °C',
+        nameLocation: 'end',
       },
       series: [
         {
@@ -139,7 +152,10 @@ export class GraphsComponent implements OnInit {
       },
       legend: {
         show: true,
-        bottom: 1,
+        bottom: -20,
+        textStyle: {
+            color: '#fff' // Set the text color to white
+        }
       },
       dataZoom: {
         type: 'inside'
@@ -148,13 +164,15 @@ export class GraphsComponent implements OnInit {
         type: 'value',
         min: 0,
         boundaryGap: false,
-        name: 'Time, s'
+        name: 'Time, s',
+        nameLocation: 'middle',
+        nameGap: 25,
       },
       yAxis: [
         {
           min: 0,
           type: 'value',
-          name: 'Current, A',
+          name: '   Current, A',
           position: 'left',
           alignTicks: true,
         },
@@ -205,7 +223,11 @@ export class GraphsComponent implements OnInit {
           type: 'shadow'
         }
       },
-      legend: {},
+      legend: {
+        textStyle: {
+            color: '#fff' // Set the text color to white
+        }
+      },
       grid: {
         left: '3%',
         right: '4%',
