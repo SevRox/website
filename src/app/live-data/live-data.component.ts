@@ -30,6 +30,7 @@ export class LiveDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // TODO check if looged in
     if (this.localStore.getData("choosenMac").length == 0) {
       this.userDataService.getLastchoosenBoardByMac().subscribe((mac: string) => { 
           this.localStore.saveData("choosenMac", mac);

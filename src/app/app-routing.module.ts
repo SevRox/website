@@ -16,8 +16,8 @@ import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/livedata', pathMatch: 'full' },
-  { path: 'livedata', component: LiveDataComponent },
-  { path: 'graphs', component: GraphsComponent },
+  { path: 'livedata', canActivate: [AuthGuard], component: LiveDataComponent },
+  { path: 'graphs', canActivate: [AuthGuard], component: GraphsComponent },
   { path: 'settings', canActivate: [AuthGuard], component: SettingsComponent },
    {
     path: 'auth',

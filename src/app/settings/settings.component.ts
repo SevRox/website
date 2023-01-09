@@ -69,6 +69,8 @@ export class SettingsComponent implements OnInit {
             break;
           case 'Logout':
             console.log("test");
+            this.localStore.removeData("choosenMac");
+            this.localStore.saveData("recordToogleState", "false");
             this.router.navigate(['auth/logout']);
             break;
           default:

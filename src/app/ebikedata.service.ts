@@ -20,7 +20,7 @@ export class EbikeDataService {
     this.authService.getToken().subscribe(token => {
       const headers = new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `iWantedToUseCurseWordButItsAProcjetForSomeOneToRead ${token}`
       });
     
       my_requestOptions = { headers: headers };
@@ -60,7 +60,7 @@ export class EbikeDataService {
     this.authService.getToken().subscribe(token => {
       const headers = new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `iWantedToUseCurseWordButItsAProcjetForSomeOneToRead ${token}`
       });
     
       my_requestOptions = { headers: headers };
@@ -90,7 +90,7 @@ export class EbikeDataService {
     this.authService.getToken().subscribe(token => {
       const headers = new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `iWantedToUseCurseWordButItsAProcjetForSomeOneToRead ${token}`
       });
     
       my_requestOptions = { headers: headers };
@@ -131,7 +131,7 @@ export class EbikeDataService {
     this.authService.getToken().subscribe(token => {
       const headers = new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `iWantedToUseCurseWordButItsAProcjetForSomeOneToRead ${token}`
       });
     
       my_requestOptions = { headers: headers };
@@ -147,7 +147,7 @@ export class EbikeDataService {
     this.authService.getToken().subscribe(token => {
       const headers = new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `iWantedToUseCurseWordButItsAProcjetForSomeOneToRead ${token}`
       });
     
       my_requestOptions = { headers: headers };

@@ -67,6 +67,10 @@ export class MyHammerConfig extends HammerGestureConfig {
           login: {
             endpoint: 'auth/login',
             method: 'post',
+            redirect: {
+              success: '/livedata',
+              failure: null,
+            },
           },
           register: {
             endpoint: 'auth/sign-up',
@@ -75,6 +79,10 @@ export class MyHammerConfig extends HammerGestureConfig {
           logout: {
             endpoint: 'auth/logout',
             method: 'post',
+            redirect: {
+              success: '/livedata',
+              failure: null,
+            },
           },
           requestPass: {
             endpoint: 'auth/request-pass',

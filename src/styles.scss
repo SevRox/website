@@ -1,22 +1,4 @@
 
-// @use 'themes' as *;
-
-// @use '@nebular/theme/styles/globals' as *;
-
-// // Import the default Nebular theme
-// @import '~@nebular/theme/styles/theming';
-
-// // Import the default Nebular theme variables
-// // @import '~@nebular/theme/styles/theming/variables';
-
-// // Import the Nebular auth components and mixins
-// @import '~@nebular/theme/styles/components/auth';
-
-// @include nb-install() {
-//   @include nb-theme-global();
-//   @include nb-auth-global(); 
-// };
-
 @import 'themes';
 
 @import "~@nebular/theme/styles/globals";
